@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-auth.js"></script>
+
+    <script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Login</h2>
+        <form id="login-form" action="">
+            <label for="email">Email</label>
+            <input id="email" type="text" placeholder="email"><br>
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="password"><br>
+            <input type="submit" value="submit"/>
+        </form>
+        <div id="login-error" style="color: red;"></div>
+    </div>
+</body>
+</html>
