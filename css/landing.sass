@@ -1,20 +1,35 @@
+#login-container
+  z-index: 9999
+  margin: 0 auto
+  justify-content: center
+  align-items: center
+  width: 25%
+  background-color: white
+  height: 100%
+  display: flex
+
+
 #login-pane
   z-index: 9999
   margin: 0 auto
   justify-content: center
   align-items: center
-  height: 100%
   text-align: center
-  width: 25%
+  width: 100%
   display: flex
+  height: 50%
   flex-flow: column nowrap
+  background-color: #EEEEEE
 
+  #error-message
+    color: red
+    font-size: 1.2em
   #input-email, #input-password
     margin-top: 10px
     margin-bottom: 10px
     height: 75px
-    font-size: 2.5em
-    width: 100%
+    font-size: 1.75em
+    width: 85%
     position: relative
     z-index: 9999
     background-color: #f4f4f4
@@ -25,7 +40,7 @@
   #login-signup-buttons
     z-index: 9999
     display: flex
-    width: 100%
+    width: 85%
     align-items: center
     justify-content: center
     flex-flow: column nowrap
@@ -53,6 +68,25 @@
       background-color: gray
       &:hover
         background-color: darken(gray, 10%)
+
+.animate
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
+  transform: translate3d(0, 0, 0)
+  backface-visibility: hidden
+  perspective: 1000px
+
+@keyframes shake
+  10%, 90%
+    transform: translate3d(-1px, 0, 0)
+
+  20%, 80%
+    transform: translate3d(2px, 0, 0)
+
+  30%, 50%, 70%
+    transform: translate3d(-4px, 0, 0)
+
+  40%, 60%
+    transform: translate3d(4px, 0, 0)
 
 
 textarea:focus, input:focus

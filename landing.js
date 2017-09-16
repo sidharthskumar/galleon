@@ -1,4 +1,4 @@
-$(function ()
+$(function()
 {
 
     firebase.initializeApp
@@ -13,20 +13,55 @@ $(function ()
         }
     );
 
-    $('#login-button').on('click', (function (e)
+    $("#login-button").click(function()
     {
-        /*e.preventDefault();
-        loginError.hide();
-        var email = $('#email').val();
-        var password = $('#password').val();
+        var email = $('#input-email').val();
+        var password = $('#input-password').val();
 
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then (function () {
+            .then(function()
+            {
                 window.location = 'dashboard.html'
-            }).catch(function (error) {
-                loginError.text(error.message);
-                loginError.show();
-            });*/
-        console.log('button clicked');
+            }).catch(function(error)
+            {
+                console.log(error);
+            });
     });
+
+    $("#signup-button").click(function()
+    {
+        $('#error-message').hide();
+
+        var email = $('#input-email').val();
+        var password = $('#input-password').val();
+
+        var error = false;
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(e)
+        {
+            console.log(e);
+            error = e;
+            $('#error-message').text(e.message);
+            $('#error-message').show();
+        });
+
+
+        if(!error)
+        {
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(function()
+                {
+                    window.location = 'dashboard.html'
+                }).catch(function(error)
+                {
+                    console.log(error);
+                });
+        }
+
+    });
+
+
+
+    
+
 });
