@@ -8,11 +8,100 @@
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-auth.js"></script>
 
-    <script type="text/javascript" src="dashboard.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <script type="text/javascript" src="js/dashboard.js"></script>
+
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-    <div>
-        <h1>Galleon</h1>
+    <div class="header">
+        <div class="container-width">
+            <div class="header-bar">
+                <h1>Jane Doe</h1>
+                <img class="profile-image" src="img/john.jpg">
+                <div class="header-fill"></div>
+                <button id="logout" class="logout-button">Logout</button>
+            </div>
+        </div>
     </div>
+    <div class="container container-width">
+        <div>
+            <div class="card-row">
+                <div class="card col-xs-8 left-card">
+                    <div class="col-xs-12">
+                        <div class="profile-top-bar">
+                            <h2>Profile Overview</h2>
+                            <a href="http://www.google.com" class="galleon-blue">Update Profile</a>
+                        </div>
+                        <div class="points">
+                            <span class="numerator galleon-blue">800</span><span class="demoninator">/1200</span> Points
+                        </div>
+                        <div class="next-steps">
+                            Here is your next step:
+                            <label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Online banking account or government of Canada login</label>
+                        </div>
+                        <div class="loading-bar-contianer">
+                            <div class="load-box load-left inner-loading-container"></div>
+                            <div class="load-box load-right">&nbsp</div>
+                            <div class="percent-text"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card col-xs-4 right-card">
+                    <div class="col-xs-12">
+                        <h2>Mentor</h2>
+                        <div class="bold-label">Telephone</div>
+                        <div class="galleon-blue">123-456-7890</div>
+                        <div class="bold-label">Email</div>
+                        <div class="galleon-blue"><a href="mailto:test@test.com">test@test.com</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-row">
+                <div class="card col-xs-8 left-card">
+                    <div class="col-xs-12">
+                        <h2>Next Steps</h2>
+                        <ul>
+                            <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Complete profile</label><br/></li>
+                            <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Online banking account and government of Canada login</label><br/></li>
+                            <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Supporting Documents</label><br/></li>
+                            <ul>
+                                <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Language test results</label><br/></li>
+                                <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Medical exams</label><br/></li>
+                                <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Police certificates</label><br/></li>
+                                <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Valid passports</label><br/></li>
+                                <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Proof that you have enough money to support yourself and your family members in Canada, if any are coming with you</label><br/></li>
+                                <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">Valid written job offer from any employer in Canada</label><br/></li>
+                                <li><label class="checkbox-label"><input type="checkbox" name="checkbox" value="value">PRovincial nominations</label><br/></li>
+
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card col-xs-4  right-card">
+                    <div class="col-xs-12">
+                        <h2>Resources</h2>
+                        <div><a href="http://www.google.com" target="black" class="galleon-blue">Fusce vehucyla dolo arcu, sit amet blandit dolor mo.</a></div><hr>
+                        <div><a href="http://www.google.com" target="black" class="galleon-blue">Fusce vehucyla dolo arcu, sit amet blandit dolor mo.</a></div><hr>
+                        <div><a href="http://www.google.com" target="black" class="galleon-blue">Fusce vehucyla dolo arcu, sit amet blandit dolor mo.</a></div><hr>
+                        <div><a href="http://www.google.com" target="black" class="galleon-blue">Fusce vehucyla dolo arcu, sit amet blandit dolor mo.</a></div><hr>
+                        <div><a href="http://www.google.com" target="black" class="galleon-blue">Fusce vehucyla dolo arcu, sit amet blandit dolor mo.</a></div><hr>
+                        <div><a href="http://www.google.com" target="black" class="galleon-blue">Fusce vehucyla dolo arcu, sit amet blandit dolor mo.</a></div><hr>
+                        <div><a href="http://www.google.com" target="black" class="galleon-blue">Fusce vehucyla dolo arcu, sit amet blandit dolor mo.</a></div><hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // todo: calculate the actual percentage here
+        var percent = 0.74;
+
+        $('.load-left').css('flex-grow', percent);
+        $('.load-right').css('flex-grow', 1 - percent);
+        $('.percent-text').text(Math.round(percent * 100) + '%');
+    </script>
 </body>
 </html>

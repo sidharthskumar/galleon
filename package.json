@@ -1,0 +1,23 @@
+{
+  "name": "htn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build_sass.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chaldron/htn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chaldron/htn/issues"
+  },
+  "homepage": "https://github.com/Chaldron/htn#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}

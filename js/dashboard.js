@@ -10,12 +10,19 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
+    $('#logout').on('click', function (e) {
+        e.preventDefault();
+        firebase.auth().signOut().then(function() {
+            window.location = 'index.html'
+        }, function(error) {
+            // An error occurred
+        });
+    })
+
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            console.log(user);
+            // console.log(user);
             // do stuff with the user object
-        } else {
-            console.log(user);
         }
     });
 });
