@@ -4,7 +4,10 @@ body, html {
   font-family: 'Open Sans', sans-serif; }
 
 .galleon-blue {
-  color: #5BBCEE; }
+  color: #5BBCEE !important; }
+
+a {
+  text-decoration: none; }
 
 .container-width {
   width: 65%;
@@ -85,7 +88,9 @@ body, html {
     margin-top: 15px; }
   .container .checkbox-label {
     display: block; }
-  .container ul {
+  .container ul.no-points {
     list-style: none; }
+  .container ul.spaces li {
+    padding-bottom: 40px; }
   .container input[type='checkbox'] {
     margin-right: 15px; }

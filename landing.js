@@ -64,7 +64,10 @@ $(function()
                                   infoComplete: false
                             });
 
-                            setTimeout(function(){window.location = 'demographics.html';}, 250);
+                             setTimeout(function() { window.location='demographics.html'; }, 150);
+
+
+                            
                           } else
                           {
                             // No user is signed in.
@@ -97,10 +100,21 @@ $(function()
                           if (user)
                           {
                             var uid = user.uid;
-                            firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
-                                console.log(snapshot);
-                              // ...
-                            }); 
+                            console.log(uid);
+                            firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
+                              if(snapshot.val())
+                              {
+                                var complete = snapshot.val().infoComplete;
+                                if(complete)
+                                {
+                                    window.location = 'dashboard.html';
+                                }
+                                else
+                                {
+                                    window.location = 'demographics.html';
+                                }
+                              }
+                            });
                           } else
                           {
                             // No user is signed in.
@@ -110,6 +124,34 @@ $(function()
             {
                 console.log(error);
             });
+    });
+
+    $("#google-button").click(function()
+    {
+        console.log('clicked');
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().getRedirectResult().then(function(result) {
+
+          if (result.credential) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            console.log(token);
+            // ...
+          }
+          // The signed-in user info.
+          var user = result.user;
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          console.log(error);
+          // ...
+        });
+
     });
 
    
