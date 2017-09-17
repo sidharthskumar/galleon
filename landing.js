@@ -1,6 +1,11 @@
+/**
+ * Landing Page
+ */
+
 $(function()
 {
 
+    //Init Firebase
     firebase.initializeApp
     (
         {
@@ -13,11 +18,14 @@ $(function()
         }
     );
 
+    //Login Button Listener
     $("#login-button").click(function()
     {
+        //Inputs
         var email = $('#input-email').val();
         var password = $('#input-password').val();
 
+        //Firebase Auth and Redirect
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function()
             {
@@ -28,15 +36,19 @@ $(function()
             });
     });
 
+    //Signup Listener
     $("#signup-button").click(function()
     {
+        //Hide error message by default
         $('#error-message').hide();
 
+        //Inputs
         var email = $('#input-email').val();
         var password = $('#input-password').val();
 
         var error = false;
 
+        //Save error if one happens on auth
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(e)
         {
             console.log(e);
@@ -46,6 +58,7 @@ $(function()
         });
 
 
+        //Auto redirect upon successful registration
         if(!error)
         {
             firebase.auth().signInWithEmailAndPassword(email, password)
