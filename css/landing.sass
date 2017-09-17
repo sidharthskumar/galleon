@@ -1,13 +1,23 @@
+
+$thicc: 500
+$thiccc: 600
+$thicccc: 700
+
+
+#splash
+  z-index: 9999
+  width: 50%
+
 #login-container
   z-index: 9999
-  margin: 0 auto
-  justify-content: center
-  align-items: center
-  width: 25%
-  background-color: white
+  //margin: 0 auto
+  //justify-content: center
+  //align-items: center
+  margin-left: auto
+  width: 100%
+  background-color: white//rgba(255, 255, 255, 1)
   height: 100%
   display: flex
-
 
 #login-pane
   z-index: 9999
@@ -15,11 +25,24 @@
   justify-content: center
   align-items: center
   text-align: center
-  width: 100%
+  width: 50%
   display: flex
-  height: 50%
+  height: 100%
   flex-flow: column nowrap
-  background-color: #EEEEEE
+  background-color: white
+  //background-color: #EEEEEE
+
+  #logo
+    width: 35%
+    margin-bottom: 50px
+
+
+
+  #tag
+    font-size: 2.7em
+    margin-bottom: 50px
+    font-weight: $thicc
+    //todo: THICCCC
 
   #error-message
     color: red
@@ -27,25 +50,27 @@
   #input-email, #input-password
     margin-top: 10px
     margin-bottom: 10px
-    height: 75px
+    height: 60px
     font-size: 1.75em
-    width: 85%
+    width: 65%
     position: relative
     z-index: 9999
-    background-color: #f4f4f4
+    //background-color: #f4f4f4
     border: none
     text-indent: 10px
     font-family: 'Open Sans', sans-serif
+    outline: gray 1px solid
 
   #login-signup-buttons
     z-index: 9999
     display: flex
-    width: 85%
+    width: 65%
     align-items: center
     justify-content: center
     flex-flow: column nowrap
     #login-button, #signup-button
       transition: all 0.3s ease
+
       display: flex
       font-size: 1.75em
       align-items: center
@@ -57,10 +82,10 @@
     #login-button
       z-index: 9999
       color: white
-      background-color: #FF327C
+      background-color: #75B3FA
       
       &:hover
-        background-color: darken(#FF327C, 10%)
+        background-color: darken(#75B3FA, 10%)
   
     #signup-button
       z-index: 9999
@@ -90,5 +115,7 @@
 
 
 textarea:focus, input:focus
-  outline: none
+  outline: gray 1px solid
   border: none
+
+
