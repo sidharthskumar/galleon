@@ -2,6 +2,10 @@
  * Landing Page
  */
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 $(function()
 {
 
@@ -18,25 +22,7 @@ $(function()
         }
     );
 
-    //Login Button Listener
-    $("#login-button").click(function()
-    {
-        //Inputs
-        var email = $('#input-email').val();
-        var password = $('#input-password').val();
-
-        //Firebase Auth and Redirect
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(function()
-            {
-                window.location = 'dashboard.html'
-            }).catch(function(error)
-            {
-                console.log(error);
-            });
-    });
-
-    //Signup Listener
+     //Signup Listener
     $("#signup-button").click(function()
     {
         //Hide error message by default
@@ -57,22 +43,72 @@ $(function()
             $('#error-message').show();
         });
 
-
-        //Auto redirect upon successful registration
         if(!error)
         {
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(function()
-                {
-                    window.location = 'dashboard.html'
-                }).catch(function(error)
-                {
-                    console.log(error);
-                });
+            //Login after 500ms if no error
+            setTimeout(function()
+            {
+                //Firebase Auth and Redirect
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                    .then(function()
+                    {
+                        firebase.auth().onAuthStateChanged(function(user) {
+                          if (user)
+                          {
+                            //Successful Login - open the db and set some data
+                            var database = firebase.database();
+                            uid = user.uid
+
+                             firebase.database().ref('users/' + uid).set(
+                             {
+                                  infoComplete: false
+                            });
+
+                            setTimeout(function(){window.location = 'demographics.html';}, 250);
+                          } else
+                          {
+                            // No user is signed in.
+                          }
+                        });
+                        
+                    }).catch(function(error)
+                    {
+                        console.log(error);
+                    });
+            }, 250);
         }
 
     });
 
+
+    //Login Button Listener
+    $("#login-button").click(function()
+    {
+        //Inputs
+        var email = $('#input-email').val();
+        var password = $('#input-password').val();
+
+        //Firebase Auth and Redirect
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(function()
+            {
+                //Wait for user object
+                firebase.auth().onAuthStateChanged(function(user) {
+                          if (user)
+                          {
+                            console.log(user.uid);
+                          } else
+                          {
+                            // No user is signed in.
+                          }
+                });
+            }).catch(function(error)
+            {
+                console.log(error);
+            });
+    });
+
+   
 
 
     
