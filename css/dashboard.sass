@@ -7,7 +7,10 @@ $header-height: 5em
 $colour-blue: #5BBCEE
 
 .galleon-blue
-    color: $colour-blue
+    color: $colour-blue !important
+
+a
+    text-decoration: none
 
 .container-width
     width: 65%
@@ -110,8 +113,12 @@ $colour-blue: #5BBCEE
     .checkbox-label
         display: block
 
-    ul
+    ul.no-points
         list-style: none
+
+    ul.spaces
+        li
+            padding-bottom: 40px
 
 
     input[type='checkbox']
