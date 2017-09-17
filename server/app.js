@@ -15,6 +15,10 @@ const pool = new pg.Pool(config)
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
 
+app.get('/', (req, res) => {
+    res.send("Hello world!")
+})
+
 app.post('/find_mentor', (req, res) => {
     const givenUser = req.body
     pool.connect((err, client) => {
@@ -42,6 +46,6 @@ app.post('/find_mentor', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!')
+app.listen(3001, () => {
+  console.log('Example app listening on port 3001!')
 })
