@@ -21,6 +21,7 @@ $(function()
                 $('#input-last-name').val(names[1]);
                 $('#input-sex').val('unknown');
                 $('#input-age').val(userData.age);
+
             });
         }
     });

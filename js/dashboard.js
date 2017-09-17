@@ -26,6 +26,17 @@ $(document).ready(function () {
                 var userData = snapshot.val();
                 console.log(userData);
                 $('#name').text(userData.name);
+                 if(userData.origin == "USA")
+                {
+                    console.log('usa');
+                    $("#tip1").text("Congratulations! Immigrants from the US and the UK generally have high incomes in Canada.");
+                }
+
+                console.log(userData);
+                if(userData.trade_occupations_certificate)
+                {
+                    $("#tip2").text("Did you know? Despite being only worth 50 CSR points, most skilled laborers are accepted into Canada");
+                }
 
                 var age = userData.age;
 
