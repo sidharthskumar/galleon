@@ -21,8 +21,63 @@ $(document).ready(function () {
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            // console.log(user);
-            // do stuff with the user object
+            var uid = user.uid;
+            firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
+                var userData = snapshot.val();
+                console.log(userData);
+                $('#name').text(userData.name);
+
+                var age = userData.age;
+
+                var score = 0;
+
+                // todo: add in the ability to query spouses
+                if (true) {
+                    if (age <= 17) {
+                        score += 0;
+                    } else if (age < 18) {
+                        score += 99;
+                    } else if (age < 19) {
+                        score += 105;
+                    } else if (age >= 20 && age <= 29) {
+                        score += 110;
+                    } else if (age <= 30) {
+                        score += 105;
+                    } else if (age <= 31) {
+                        score += 99;
+                    } else if (age <= 32) {
+                        score += 94;
+                    } else if (age <= 33) {
+                        score += 88;
+                    } else if (age <= 34) {
+                        score += 83;
+                    } else if (age <= 35) {
+                        score += 77;
+                    } else if (age <= 36) {
+                        score += 72;
+                    } else if (age <= 37) {
+                        score += 66;
+                    } else if (age <= 38) {
+                        score += 61;
+                    } else if (age <= 39) {
+                        score += 55;
+                    } else if (age <= 40) {
+                        score += 50;
+                    } else if (age <= 41) {
+                        score += 39;
+                    } else if (age <= 42) {
+                        score += 28;
+                    } else if (age <= 43) {
+                        score += 17;
+                    } else if (age <= 44) {
+                        score += 6;
+                    } else if (age >= 45) {
+                        score += 0;
+                    }
+
+                    $('#points-value').text(score);
+                }
+            });
         }
     });
 });
