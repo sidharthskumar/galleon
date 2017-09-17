@@ -1,61 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>My Info</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <!-- HTMl5 Reset -->
-  <link rel="stylesheet" href="css/reset.css">
-  <!-- Custom Element Styles -->
-  <link rel="stylesheet" href="css/demographics.css">
 
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <!-- jQuery & Firebase -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-auth.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>My Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- HTMl5 Reset -->
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- Custom Element Styles -->
+    <link rel="stylesheet" href="css/demographics.css">
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- jQuery & Firebase -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase-auth.js"></script>
+
+    <script src='js/demographics.js'></script>
 
 </head>
 
 <body>
 
-  <div id="container">
+    <div id="container">
 
-    <h1 id="title">Fill in your profile</h1>
+        <h1 id="title">Fill in your profile</h1>
 
-    <div class="card">
-      <div class="card-content">
-        <p class="card-title">Basic Information</p>
-        <div class="text-input-pair">
-            <p class="lbl">First Name</p>
-            <input id="input-first-name" class="text-input" type="text">
+        <div class="card">
+            <div class="card-content">
+                <p class="card-title">Basic Information</p>
+                <div class="text-input-pair">
+                    <p class="lbl">First Name</p>
+                    <input id="input-first-name" class="text-input" type="text">
+                </div>
+                <div class="text-input-pair">
+                    <p class="lbl">Last Name</p>
+                    <input id="input-last-name" class="text-input" type="text">
+                </div>
+                <div class="text-input-pair">
+                    <p class="lbl">Sex</p>
+                    <input id="input-sex" class="text-input" type="text">
+                </div>
+                <div class="text-input-pair">
+                    <p class="lbl">Age</p>
+                    <input id="input-age" class="text-input" type="number">
+                </div>
+            </div>
         </div>
-        <div class="text-input-pair">
-            <p class="lbl">Last Name</p>
-            <input id="input-last-name" class="text-input" type="text">
-        </div>
-        <div class="text-input-pair">
-            <p class="lbl">Sex</p>
-            <input id="input-sex" class="text-input" type="text">
-        </div>
-        <div class="text-input-pair">
-            <p class="lbl">Age</p>
-            <input id="input-age" class="text-input" type="number">
-        </div>
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-content">
-        <p class="card-title">Education</p>
-        
-      </div>
-  </div>
+        <div class="card">
+            <div class="card-content">
+                <p class="card-title">Education Level</p>
+                
+                <form id="edu-form" action="">
 
+                    <h2 class="education">What level of education do you have?</h2>
 
-  
+                    <ul>
+
+                        <li>
+
+                            <input class="radio-button" type="radio" name="edu0" value="0">
+                            <p class="text">Less than secondary school </p>
+                        </li>
+                        <br>
+
+                        <li>
+                            <input class="radio-button" type="radio" name="edu1" value="1">
+                            <p class="text">Secondary school diploma</p>
+                        </li>
+                        <br>
+
+                        <li>
+                            <input class="radio-button" type="radio" name="edu2" value="2">
+                            <p class="text">One-year degree, diploma or certificate from a university, college, trade or technical school, or other institute</p>
+                        </li>
+                        <br>
+
+                        <li>
+                            <input class="radio-button" type="radio" name="edu3" value="3">
+                            <p class="text"> Two-year program at a university, college, trade or technical school, or other institute</p>
+                        </li>
+                        <br>
+
+                        <li>
+                            <input class="radio-button" type="radio" name="edu4" value="4">
+                            <p class="text"> Bachelor's degree OR a three or more year program at a university, college, trade or technical school, or other institute</p>
+                        </li>
+                        <br>
+
+                        <li>
+                            <input class="radio-button" type="radio" name="edu5" value="5">
+                            <p class="text"> Two or more certificates, diplomas, or degrees. One must be for a program of three or more years </p>
+                        </li>
+                        <br>
+                    </ul>
+                </form>
+
+                <h2>Do you have provincial nomination?</h2>
+                <div class="box">
+                    <button id="pn-yes" data-value="0" class="button yes">Yes</button>
+                    <button id="pn-no" data-value="0" class="button no">No</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <p class="card-title">Language</p>
+
+                <h2 class="qual">What language qualifications (within two years) do you have? </h2>
+                <div class="card-content">
+
+                    <h2>English</h2>
+                    <div class="box">
+                        <button class="button yes">CELPIP (general test)</button>
+                        <button class="button no">IELTS (general training)</button>
+                    </div>
+                </div>
+
+                <div class="card-content">
+
+                    <h2 style="width: 100%">French</h2>
+                    <div class="box">
+                        <button class="button yes">TEF (general test)</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <p class="card-title">Work Experiance</p>
+
+                <form action="">
+
+                    <h2 class="education">What is your National Occupational Classification (NOC)?
+</h2>
+
+                    <ul>
+
+                        <li>
+
+                            <input class="radio-button" type="radio" name="gender" value="male">
+                            <p class="text">Skill Type 0 </p>
+                        </li>
+                        <br>
+
+                        <li>
+                            <input class="radio-button" type="radio" name="gender" value="female">
+                            <p class="text">Skill Level A</p>
+                        </li>
+                        <br>
+
+                        <li>
+                            <input class="radio-button" type="radio" name="gender" value="other">
+                            <p class="text">Skill Level B</p>
+                        </li>
+                        <br>
+
+                    </ul>
+                </form>
+
+                <div class="card-content">
+
+                    <h2>Have you worked in Canada before?</h2>
+                    <div class="box">
+                        <button class="button yes">Yes</button>
+                        <button class="button no">No</button>
+                    </div>
+                </div>
+
+                <div class="card-content">
+
+                    <h2>Is your employment already arranged?</h2>
+                    <div class="box">
+                        <button class="button yes">Yes</button>
+                        <button class="button no">No</button>
+                    </div>
+                </div>
+
+                <div class="card-content">
+
+                    <h2>Are you in a trade occupation?</h2>
+                    <div class="box">
+                        <button class="button yes">Yes</button>
+                        <button class="button no">No</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-content">
+                <p class="card-title">Family</p>
+                <h2>Do you have a spouse?</h2>
+
+                <button class="button button">Yes</button>
+                <button class="button button">No</button>
+            </div>
+
+            <div class="card-content">
+
+                <h2>Do you have immediate siblings living in Canada as citizens or permanent residents?</h2>
+
+                <button class="button button">Yes</button>
+                <button class="button button">No</button>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <p class="card-title">Other</p>
+                <h2>Do you have provincial nomination?</h2>
+                <div class="box">
+                    <button class="button yes">Yes</button>
+                    <button class="button no">No</button>
+                </div>
+            </div>
+
+        </div>
 </body>
+
 </html>

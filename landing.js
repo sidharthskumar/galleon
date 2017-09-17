@@ -64,7 +64,10 @@ $(function()
                                   infoComplete: false
                             });
 
-                            setTimeout(function(){window.location = 'demographics.html';}, 250);
+                             setTimeout(function() { window.location='demographics.html'; }, 150);
+
+
+                            
                           } else
                           {
                             // No user is signed in.
@@ -97,10 +100,21 @@ $(function()
                           if (user)
                           {
                             var uid = user.uid;
-                            firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
-                                console.log(snapshot);
-                              // ...
-                            }); 
+                            console.log(uid);
+                            firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
+                              if(snapshot.val())
+                              {
+                                var complete = snapshot.val().infoComplete;
+                                if(complete)
+                                {
+                                    window.location = 'dashboard.html';
+                                }
+                                else
+                                {
+                                    window.location = 'demographics.html';
+                                }
+                              }
+                            });
                           } else
                           {
                             // No user is signed in.
