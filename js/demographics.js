@@ -1,5 +1,30 @@
 $(function()
 {
+    var config = {
+        apiKey: "AIzaSyC5nMI6ctCwOfCr7UPBlpCdrP4Ky2MzDuQ",
+        authDomain: "htn-ea844.firebaseapp.com",
+        databaseURL: "https://htn-ea844.firebaseio.com",
+        projectId: "htn-ea844",
+        storageBucket: "htn-ea844.appspot.com",
+        messagingSenderId: "250290051676"
+    };
+
+    firebase.initializeApp(config);
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var uid = user.uid;
+            firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
+                var userData = snapshot.val();
+                var names = userData.name.split(' ', 2);
+                $('#input-first-name').val(names[0]);
+                $('#input-last-name').val(names[1]);
+                $('#input-sex').val('unknown');
+                $('#input-age').val(userData.age);
+            });
+        }
+    });
+
 	$('.button').click(
 		function(e)
 		{
@@ -17,7 +42,6 @@ $(function()
 				me.css('color', '#75B3FA');
 			}
 
-			console.log(me.attr('data-value'));
 			e.preventDefault();
 		})
 });
