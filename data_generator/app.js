@@ -29,9 +29,11 @@ pool.connect(function (err, client, done) {
         finish();
     }
 
-    Array(1000).fill().map((_, i) => {
+    Array(5000).fill().map((_, i) => {
         users.push({
             name: faker.name.findName(),
+            phone: faker.phone.phoneNumberFormat(),
+            email: faker.internet.email(),
             age: randRange(20, 60),
             canadian_work_years: randRange(0, 2),
             clb_english_score: randRange(4, 10),
@@ -46,8 +48,7 @@ pool.connect(function (err, client, done) {
 
     var promise = PromiseArrays.map(users, function (user, index) {
         return new Promise(function (resolve, reject) {
-            client.query(`INSERT INTO users (id, name, age, canadian_work_years, clb_english_score, clb_french_score, employment_arranged, immediate_siblings_living_in_canada, native_work_experience_years, nominated_for_pns, trade_occupations_certificate) VALUES (${index}, '${user.name}', ${user.age}, ${user.canadian_work_years}, ${user.clb_english_score}, ${user.clb_french_score}, ${user.employment_arranged}, ${user.immediate_siblings_living_in_canada}, ${user.native_work_experience_years}, ${user.nominated_for_pns}, ${user.trade_occupations_certificate})`, resolve);
-            });
+            client.query(`INSERT INTO users (id, name, email, phone, age, canadian_work_years, clb_english_score, clb_french_score, employment_arranged, immediate_siblings_living_in_canada, native_work_experience_years, nominated_for_pns, trade_occupations_certificate) VALUES (${index}, '${user.name}', '${user.email}', '${user.phone}', ${user.age}, ${user.canadian_work_years}, ${user.clb_english_score}, ${user.clb_french_score}, ${user.employment_arranged}, ${user.immediate_siblings_living_in_canada}, ${user.native_work_experience_years}, ${user.nominated_for_pns}, ${user.trade_occupations_certificate})`, resolve);
         });
     }).then(function (result) {
         finish();
