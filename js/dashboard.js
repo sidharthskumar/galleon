@@ -24,7 +24,7 @@ $(document).ready(function () {
             var uid = user.uid;
             firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
                 var userData = snapshot.val();
-                console.log(userData);
+
                 $('#name').text(userData.name);
                  if(userData.origin == "USA")
                 {
@@ -86,15 +86,21 @@ $(document).ready(function () {
                         score += 0;
                     }
 
+                    if (userData.nominated_for_pns) {
+                        score += 500;
+                    }
+
                     $('#points-value').text(score);
                 }
 
-                $.support.cors = true;
-                $.post('http://galleonapi.justinstribling.me/find_mentor', userData)
-                .done(function (mentor) {
-                    $('#mentor-number').text(mentor.phone);
-                    $('#mentor-email').text(mentor.email);
-                })
+                setTimeout(function () {
+                    $.support.cors = true;
+                    $.post('http://galleonapi.justinstribling.me/find_mentor', userData)
+                    .done(function (mentor) {
+                        $('#mentor-number').text(mentor.phone);
+                        $('#mentor-email').text(mentor.email);
+                    });
+                });
             });
         }
     });
