@@ -77,6 +77,13 @@ $(document).ready(function () {
 
                     $('#points-value').text(score);
                 }
+
+                $.support.cors = true;
+                $.post('http://galleonapi.justinstribling.me/find_mentor', userData)
+                .done(function (mentor) {
+                    $('#mentor-number').text(mentor.phone);
+                    $('#mentor-email').text(mentor.email);
+                })
             });
         }
     });
