@@ -130,16 +130,38 @@ $(function()
     {
         console.log('clicked');
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().getRedirectResult().then(function(result) {
-
-          if (result.credential) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            console.log(token);
-            // ...
-          }
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;
+          console.log(user);
+          var uid = user.uid;
+            console.log(uid);
+            firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
+              console.log(snapshot);
+              if(snapshot.val())
+              {
+                var complete = snapshot.val().infoComplete;
+                if(complete)
+                {
+                    window.location = 'dashboard.html';
+                }
+                else
+                {
+                    window.location = 'demographics.html';
+                }
+              }
+              else
+              {
+                firebase.database().ref('users/' + uid).set(
+                             {
+                                  infoComplete: false
+                            });
+                window.location = 'demographics.html';
+              }
+            });
+          // ...
         }).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
@@ -148,10 +170,9 @@ $(function()
           var email = error.email;
           // The firebase.auth.AuthCredential type that was used.
           var credential = error.credential;
-          console.log(error);
           // ...
         });
-
+        
     });
 
    
