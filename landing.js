@@ -96,7 +96,11 @@ $(function()
                 firebase.auth().onAuthStateChanged(function(user) {
                           if (user)
                           {
-                            console.log(user.uid);
+                            var uid = user.uid;
+                            firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
+                                console.log(snapshot);
+                              // ...
+                            }); 
                           } else
                           {
                             // No user is signed in.
