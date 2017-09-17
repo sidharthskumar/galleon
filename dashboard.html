@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <script type="text/javascript" src="js/dashboard.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
@@ -57,11 +58,37 @@
                         <div class="galleon-blue">123-456-7890</div>
                         <div class="bold-label">Email</div>
                         <div><a href="mailto:test@test.com" class="galleon-blue">test@test.com</a></div>
+                       <!-- <a href="#" style="color: black" id="open-chat">
+                            <i style="font-size: 1.75em; margin-top: 10px" class="fa fa-commenting-o" aria-hidden="true"></i><p>Chat now!</p>
+                        </a> -->
                     </div>
+
+   
                 </div>
             </div>
             <div class="card-row">
-                <div class="card col-xs-8 left-card">
+
+                <div class="card">
+                     <iframe style="height: 100%" id="chat" src='https://webchat.botframework.com/embed/jannisv2?s=RKLzt7lwIKg.cwA.4q4.D1ENpQfl7NShXfJ75hPw01jk70AmVmOWmu59jBhYwmU'></iframe >
+                </div>
+                <div class="card col-xs-4  right-card" style="width: 66%">
+                    <div class="col-xs-12">
+                        <h2>Resources</h2>
+                        <ul class="spaces">
+                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.1" target="black" class="galleon-blue">Filling out your profile</a></li>
+                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.2" target="black" class="galleon-blue">Work experience and job offers</a></li>
+                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.3" target="black" class="galleon-blue">Applying online and technical help</a></li>
+                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.4" target="black" class="galleon-blue">Federal skilled workers</a></li>
+                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.5" target="black" class="galleon-blue">Canadian Experience Class</a></li>
+                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.6" target="black" class="galleon-blue">Language testing</a></li>
+                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.7" target="black" class="galleon-blue">Skilled trades</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-row">
+                <div class="card col-xs-8 left-card" style="width: 100%">
                     <div class="col-xs-12">
                         <h2>Next Steps</h2>
                         <ul class="no-points">
@@ -81,20 +108,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card col-xs-4  right-card">
-                    <div class="col-xs-12">
-                        <h2>Resources</h2>
-                        <ul class="spaces">
-                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.1" target="black" class="galleon-blue">Filling out your profile</a></li>
-                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.2" target="black" class="galleon-blue">Work experience and job offers</a></li>
-                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.3" target="black" class="galleon-blue">Applying online and technical help</a></li>
-                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.4" target="black" class="galleon-blue">Federal skilled workers</a></li>
-                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.5" target="black" class="galleon-blue">Canadian Experience Class</a></li>
-                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.6" target="black" class="galleon-blue">Language testing</a></li>
-                            <li><a href="http://www.cic.gc.ca/english/helpcentre/results-by-topic.asp?st=29.7" target="black" class="galleon-blue">Skilled trades</a></li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -106,5 +120,8 @@
         $('.load-right').css('flex-grow', 1 - percent);
         $('.percent-text').text(Math.round(percent * 100) + '%');
     </script>
+
+
+
 </body>
 </html>
