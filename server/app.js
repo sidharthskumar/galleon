@@ -1,0 +1,47 @@
+const express = require('express')
+const app = express()
+const pg = require('pg')
+const bodyParser = require('body-parser')
+
+var config = {
+    user: process.env.db_user,
+    host: process.env.db_host,
+    database: process.env.db_name,
+    port: process.env.db_port
+};
+
+const pool = new pg.Pool(config)
+
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json())
+
+app.post('/find_mentor', (req, res) => {
+    const givenUser = req.body
+    pool.connect((err, client) => {
+        client.query("SELECT * from users", (err, users) => {
+            let bestUser = null;
+            let lowestDistance = 999999999999999
+            users.rows.forEach((user, index) => {
+                var distance = Math.abs(user.age - givenUser.age)
+                             + Math.abs(user.canadian_work_years - givenUser.canadian_work_years)
+                             + Math.abs(user.clb_english_score - givenUser.clb_english_score)
+                             + Math.abs(user.clb_french_score - givenUser.clb_french_score)
+                             + Math.abs(user.native_work_experience_years - givenUser.native_work_experience_years)
+                             + user.employment_arranged == givenUser.employment_arranged ? 0 : 5
+                             + user.immediate_siblings_living_in_canada == givenUser.immediate_siblings_living_in_canada ? 0 : 5
+                             + user.nominated_for_pns == givenUser.nominated_for_pns ? 0 : 5
+                             + user.trade_occupations_certificate == givenUser.trade_occupations_certificate ? 0 : 5
+
+                if (distance < lowestDistance) {
+                    lowestDistance = distance
+                    bestUser = user
+                }
+            })
+            res.send(bestUser);
+        });
+    })
+})
+
+app.listen(3000, () => {
+  console.log('Example app listening on port 3000!')
+})

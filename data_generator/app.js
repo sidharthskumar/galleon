@@ -10,7 +10,6 @@ var config = {
     port: process.env.db_port
 };
 
-// Create a pool.
 var pool = new pg.Pool(config);
 
 var users = [];
