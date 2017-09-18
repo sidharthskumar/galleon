@@ -3,30 +3,33 @@ const app = express()
 const pg = require('pg')
 const bodyParser = require('body-parser')
 
-var config = {
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json())
+
+const cockroachdbConfig = {
     user: process.env.db_user,
     host: process.env.db_host,
     database: process.env.db_name,
     port: process.env.db_port
-};
+}
+const pool = new pg.Pool(cockroachdbConfig)
 
-const pool = new pg.Pool(config)
+var pgClientPromise = pool.connect()
+Promise.all([pgClientPromise]).then((resolvedValues) => {
+    [pgClient] = resolvedValues
 
-app.use(bodyParser.urlencoded())
-app.use(bodyParser.json())
+    // begin routes here
+    app.get('/', (req, res) => {
+        res.send("Hello world!")
+    })
 
-app.get('/', (req, res) => {
-    res.send("Hello world!")
-})
-
-app.post('/find_mentor', (req, res) => {
-    const givenUser = req.body
-    pool.connect((err, client) => {
-        client.query("SELECT * from users", (err, users) => {
-            let bestUser = null;
+    app.post('/find_mentor', (req, res) => {
+        const givenUser = req.body
+        pgClient.query("SELECT * from users", (err, users) => {
+            let bestUser = null
             let lowestDistance = 999999999999999
             users.rows.forEach((user, index) => {
-                var distance = Math.abs(user.age - givenUser.age)
+                const distance = Math.abs(user.age - givenUser.age)
                              + Math.abs(user.canadian_work_years - givenUser.canadian_work_years)
                              + Math.abs(user.clb_english_score - givenUser.clb_english_score)
                              + Math.abs(user.clb_french_score - givenUser.clb_french_score)
@@ -41,11 +44,11 @@ app.post('/find_mentor', (req, res) => {
                     bestUser = user
                 }
             })
-            res.send(bestUser);
-        });
+            res.send(bestUser)
+        })
     })
-})
 
-app.listen(3001, () => {
-  console.log('Example app listening on port 3001!')
+    app.listen(3001, () => {
+      console.log('Example app listening on port 3001!')
+    })
 })
