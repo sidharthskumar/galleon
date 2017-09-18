@@ -24,6 +24,8 @@ Promise.all([pgClientPromise]).then((resolvedValues) => {
     })
 
     app.post('/find_mentor', (req, res) => {
+        res.header("Access-Control-Allow-Origin", "*")
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
         const givenUser = req.body
         pgClient.query("SELECT * from users", (err, users) => {
             let bestUser = null
